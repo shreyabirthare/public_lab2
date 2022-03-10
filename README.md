@@ -2,19 +2,31 @@ Compsci 677: Distributed and Operating Systems
 
 Spring 2022
 
-# Lab 2
+
+# Lab 2: Tiered Microservices-based Toy Store
+
+## Team Members
+
+List the names of the grouop members here. You can replace this readme file with your own documention, in which case, please list the names of all team members at the top of the readme.
+
 
 ## Goals and Learning Outcomes
 
-1. Learn about multi-tier architecture and microservices.
-2. Learn how to implement a REST API server.
-3. Learn how to containerize your service using Docker, and how to manage an application consisting
+This lab has the following learning outcomes with regards to concepts covered in class.
+1. Design distributed server applications using multi-tier architecture and microservices.
+2. Design virtualized applications 
+3. Design interfaces for web application 
+
+The lab also has the following learning outcomes with regards to practice and modern technologies.
+1. Learn how to implement a REST API server.
+2. Learn to measure the performance of a distributed application
+3. Learn how to use Docket to containerize your micro-service, and learn to manage an application consisting
    of multiple containers using Docker Compose.
 
 ## Instructions
 
 1. You may work in groups of two for this lab. If you decide to work in groups, you should briefly
-    describe how the work is divided between the two team members in your README file.
+    describe how the work is divided between the two team members in your README file. 
 
 2. You can use either python or Java for this assignment. You may optionally use C++ but TA support
     for C++ issues will be limited. For this lab you may use different languages for different
@@ -22,17 +34,21 @@ Spring 2022
 
 ## Lab Description
 
-In this lab we will extend the toy store application that we implemented in the first lab. Instead
-of having a monolithic server, we will now employ a two-tier design - a front-end tier and a
+In this lab we will extend the toy store application that we implemented in the first lab. 
+Instead of using a monolithic server, we will now employ a two-tier design for the Toy Store - a front-end tier and a
 back-end tier - and use microservices at each tier. The front-end is implemented as a single
 microservice, while the back-end tier is implemented as two separate services: a catalog service and
 an order service.
 
-## Part 1: Implement Your Application as Microservices
+Note: You are not required to use any code from Lab 1, but please feel free to use any parts of lab 1 for lab 2 if it is useful to you.
+
+## Part 1: Implement Your a Tiered Toy Store as Microservices
 
 ### Front-end Service
 
-The clients can communicate with the front-end service using the following two REST APIs:
+The clients can communicate with the front-end service using the following two HTTP-based REST APIs.
+In a HTTP-based REST API, a client sends its request as an HTTP request and receives a reply as a HTTP response.
+We will use HTTP GET and POST requests to send requests to the server. The server supports Query and Buy requests, like in Lab 1, but these are sent as HTTP REST requests as follows.  
 
 1. `GET /products/<product_name>`
 
@@ -90,39 +106,58 @@ The clients can communicate with the front-end service using the following two R
     In case of error, the front-end service returns a JSON reply with a top-level `error` object,
     which has two fields `code` and `message`, similar to the product query API.
 
+The server should listen to HTTP requests on a socket port  (normally, this would be post 80 for HTTP, but we suggest using a higher numbered port since your machine may need admin/root privileges to listen on port 80). 
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing the request. Alternatively, tou can also use a simple thread-per-request model to create a thread for each new request. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from these service should be used to construct a json response as shown in the above API
+and sent back to the client as a HTTP reply. 
+
+
 **Note that when implementing the front-end service you can NOT using existing web frameworks
 like [`Django`](https://github.com/perwendel/spark),
 [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
 etc.** You'll have to handle the HTTP requests directly or you can implement your own simple web
-framework (it's actually not as hard as you may think). If you don't know how to get started on
-this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
+framework (it's actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to makle this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
+
+If you don't know how to get started on this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
 Piazza.
 
 ### Catalog Service
 
 When the front-end service receives a query request, it will forward the request to the catalog
-service. The catalog service needs to maintain the catalog data, both in a memory cache and in a CSV
-file on disk (in production people usually have a separate database service, but here we just use a
-file to simulate it).
+service. The catalog service needs to maintain the catalog data, both in memory  and in a CSV or text
+file on disk ("database"). The disk file will persist the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
+
+ While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your deisgn). 
+ 
+ The catalog service is yet another service that listens to request from the front-end service or the order 
+ service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
+ should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
+ 
+ Like the front-end server, you shoud employ threads to service incoming request. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
+ 
 
 ### Order Service
 
 When the front-end service receives an order request, it will forward the request to the order
-service. Obviously the order service still needs to talk with the catalog service to complete the
-order. If the order was successful, the order service generates an order number and returns it to
+service. Obviously the order service still need to interact with the catalog service to complete the
+order. Specifically, a buy order should succeed only if the item is in stock, and the stock should be decremented.
+
+
+If the order was successful, the order service generates an order number and returns it to
 the front-end service. The order number should be an unique, incremental number, starting from 0.
 The order service also need to maintain the order log (including order number, product name, and
-quantity) in a persistent manner. Similar to the catalog service, we will just use a simple CSV file
-on disk as the persistent storage.
+quantity) in a persistent manner. Similar to the catalog service, we will just use a simple CSV or text file
+on disk as the persistent storage for the database.
+
+Like in the catalog service, you need to first design the interface exposed by your order service (i.e., list of functions and their input/outputs). You can use any method for front-end to involke this interface (e.g., socket, RPC, RMI, REST HTTP). Further, the order service should be threaded and should use synronization when writing to the order database file.
 
 
 ### Client
 
-The client in this lab works in the following way. First it opens a connection with the front-end
+The client in this lab works in the following way. First it opens a HTTP connection with the front-end
 service, then it randomly queries an item. If the returned quantity is greater than zero, with
 probability $p$ it will send another order request using the same connection. Make $p$ and
 adjustable parameter in the range $[0, 1]$ so that you can test how your application performs when
-the percentage of order requests changes.
+the percentage of order requests changes. A client can make a sequence of query and (optional) order for each such query based on probability $p$. This sequence of requests is called a session. Your front-end server should use a single thread to handle all requests from the session until the client closes the HTTP socket connection.  Make sure that the thread pool at the server is large enough to handle all active client and their sessions without starving. 
 
 ### Communication
 

@@ -133,7 +133,7 @@ file on disk ("database"). The disk file will persist the state of the catalog. 
 
  While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your deisgn). 
  
- The catalog service is yet another service that listens to request from the front-end service or the order 
+ The catalog service is implemented as a server that listens to request from the front-end service or the order 
  service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
  should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
  

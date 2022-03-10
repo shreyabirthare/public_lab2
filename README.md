@@ -19,14 +19,16 @@ This lab has the following learning outcomes with regards to concepts covered in
 
 The lab also has the following learning outcomes with regards to practice and modern technologies.
 1. Learn how to implement a REST API server.
-2. Learn to measure the performance of a distributed application
-3. Learn how to use Docket to containerize your micro-service, and learn to manage an application consisting
+2. Learn to measure the performance of a distributed application.
+3. Learn how to use Docker to containerize your micro-service, and learn to manage an application consisting
    of multiple containers using Docker Compose.
+4. Learn how to test a distributed application.
 
 ## Instructions
 
 1. You may work in groups of two for this lab. If you decide to work in groups, you should briefly
-    describe how the work is divided between the two team members in your README file. 
+    describe how the work is divided between the two team members in your README file.  Be sure to list
+    the names of all team members at the top of this README file.
 
 2. You can use either python or Java for this assignment. You may optionally use C++ but TA support
     for C++ issues will be limited. For this lab you may use different languages for different
@@ -66,7 +68,7 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     }
     ```
 
-    If things went wrong, for example if the product name provided by the client does not exit, the
+    If things go wrong, for example if the product name provided by the client does not exist, the
     front-end service should return a JSON reply with a top-level `error` object. The `error` object
     should contain two fields: `code` (for identifying the type of the error) and `message` (human
     readable explanation of what went wrong). For instance,
@@ -106,16 +108,18 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     In case of error, the front-end service returns a JSON reply with a top-level `error` object,
     which has two fields `code` and `message`, similar to the product query API.
 
-The server should listen to HTTP requests on a socket port  (normally, this would be post 80 for HTTP, but we suggest using a higher numbered port since your machine may need admin/root privileges to listen on port 80). 
-Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing the request. Alternatively, tou can also use a simple thread-per-request (or more precisely, thread-per-session) model to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from these service should be used to construct a json response as shown in the above API
+The server should listen to HTTP requests on a socket port  (normally, this would be port 80 for HTTP, but we suggest using a higher-numbered port since your machine may need admin/root privileges to listen on port 80). 
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model(or more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API
 and sent back to the client as a HTTP reply. 
 
 
 **Note that when implementing the front-end service you can NOT using existing web frameworks
-like [`Django`](https://github.com/perwendel/spark),
+such as [`Django`](https://github.com/perwendel/spark),
 [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
-etc.** You'll have to handle the HTTP requests directly or you can implement your own simple web
-framework (it's actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to makle this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
+etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to developer. The goal here is to understand the details, which is why you need to implement them youself rather than using a web framework.
+
+You'll have to handle the HTTP requests directly in your application or you can implement your own simple web
+framework (this is actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to make this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
 
 If you don't know how to get started on this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
 Piazza.
@@ -171,7 +175,11 @@ concurrency models taught in class: thread-per-request, threadpool, async, etc.
 
 ## Part 2: Containerize Your Application
 
-Create a dockerfile for each of the three microservices that you implemented in part 1. Verify that
+In this part, you will first containerize your application code and then learn to deploy all components 
+as a distributed application  using docker. If you are not familiar with docker, be sure to look at 
+homework 5, which provides a hands-on tutorial. Also review the references at the end of this file.
+
+First, create a dockerfile for each of the three microservices that you implemented in part 1. Verify that
 they build and run without issue.
 
 After that write a docker compose file that can bring up (or tear down) all three services using one
@@ -179,7 +187,7 @@ After that write a docker compose file that can bring up (or tear down) all thre
 
 Note that files you write in a docker container are not directly accessible from the host, and they
 will be erased when the container is removed. Therefore, you should mount a directory on the host as
-a volume to the catalog and order services, so that the logs can be persisted after the containers
+a volume to the **catalog** and **order** services, so that files and output can be persisted after the containers
 are removed.
 
 Another thing to notice is that when you use docker compose to bring up containers it will set up a
@@ -189,9 +197,23 @@ services so that they know how to locate other services regardless of whether th
 "bare metal" or inside containers. (HINT: you can set environment variables when building a docker
 image or in a docker compose file).
 
-## Part 3: Performance Evaluation
+## Part 3: Testing and Performance Evaluation
 
-TODO
+In this part, you wil be testing the functionality and performance of your code.
+
+First, write some simple testcases to verify that your code works as expected. Be sure to test the code and error handling (e.g., by querying items that do not exist or buying items that are out of stock). Testing distributed applications is different from testing a single program. So you should try to test the full application as well as the micro-services. Write a few different test cases and attach output to show that it worked as expected.  Submit your testcases and the outputs in a test directory.
+
+Second, write some performance / load test to evaluate the performance of your application. Deploy more than one more client process and have each one make concurrent requests to the server. The clients should be running on a different machine than the server (use the EdLab, if needed). Measure the latency seen by the client for different types of requests, such as query and buy.
+
+Vary the number of clients from 1 to 5 and measure the latency as the load goes up. Make simple plots showing number of clients on the X-axis and response time/latency on the Y-axis. 
+
+Using these measurements, answer the following questions:
+
+1. Does the latency of the application change with and without docker containers? Did virtualization add any overheads?
+2. How does the laency of the query compare to buy? Since buy requests involve all theee microservices, while query requests only involve two microservices, does it impact the observed latency? 
+3. How does the latency change as the number of clients change? Does it change for different types of requests?
+
+
 
 ## What to Submit
 
@@ -212,6 +234,8 @@ sources), 2) An Output file (1 to 2 pages), showing sample output or screenshots
 program works, and 3) An Evaluation doc (2 to 3 pages), for part 3 showing plots and making
 observations.
 
+Submit your testcases in the test directory. Attach sample output of test cases on the docs directory.
+
 Your GitHub repo is expected to contain many commits with proper commit messages (which is good
 programming practice). Use GitHub to develop your lab and not just to submit the final version. We
 expect a reasonable number of commits and meaningful commit messages from both members of the group
@@ -226,7 +250,7 @@ as one should).
 
     * Source code should build and work correctly (25%),
     * Code should have in-line comments (5%),
-    * A design doc should be submitted (10%),
+    * A descriptive design doc should be submitted  (10%),
     * An output file should be included (5%),
     * GitHub repo should have adequate commits and meaningful commit messages (5%).
 
@@ -245,7 +269,8 @@ as one should).
 
     * Eval document should be turned in with measurements for Part 1 and 2 (shown as plots where
         possible and tables otherwise) (10%),
-    * Explaining the plots by addressing answers to the 4 questions listed in Part 3 (10%).
+    * Explaining the plots by addressing answers to the 4 questions listed in Part 3 (5%)
+    * Test cases and test case output (5%)
 
 Late policy will include 10% of points per day. Medical or covid exceptions require advance notice,
 and should be submitted through pizza (use exceptionRequests folder in pizza). Three free late days

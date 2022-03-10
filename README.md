@@ -90,13 +90,13 @@ The clients can communicate with the front-end service using the following two R
     In case of error, the front-end service returns a JSON reply with a top-level `error` object,
     which has two fields `code` and `message`, similar to the product query API.
 
-    **Note that when implementing the front-end service you can NOT using existing web frameworks
-    like [`Django`](https://github.com/perwendel/spark),
-    [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
-    etc.** You'll have to handle the HTTP requests directly or you can implement your own simple web
-    framework (it's actually not as hard as you may think). If you don't know how to get started on
-    this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
-    Piazza.
+**Note that when implementing the front-end service you can NOT using existing web frameworks
+like [`Django`](https://github.com/perwendel/spark),
+[`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
+etc.** You'll have to handle the HTTP requests directly or you can implement your own simple web
+framework (it's actually not as hard as you may think). If you don't know how to get started on
+this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
+Piazza.
 
 ### Catalog Service
 

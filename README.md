@@ -107,7 +107,7 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     which has two fields `code` and `message`, similar to the product query API.
 
 The server should listen to HTTP requests on a socket port  (normally, this would be post 80 for HTTP, but we suggest using a higher numbered port since your machine may need admin/root privileges to listen on port 80). 
-Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing the request. Alternatively, tou can also use a simple thread-per-request model to create a thread for each new request. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from these service should be used to construct a json response as shown in the above API
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing the request. Alternatively, tou can also use a simple thread-per-request (or more precisely, thread-per-session) model to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from these service should be used to construct a json response as shown in the above API
 and sent back to the client as a HTTP reply. 
 
 
@@ -161,9 +161,8 @@ the percentage of order requests changes. A client can make a sequence of query 
 
 ### Communication
 
-We have specified that the front-end services should provide REST APIs to the client, but it's up to
-you to decide how the microservices talk with each other. You can use REST API, RPC, RMI, raw
-socket, etc.
+We have specified that the front-end service should provide a REST interface to the client, but have asked you to 
+design the interfaces exposed by the two backend micro-services.  As noted above, you can use REST API, RPC, RMI, gRPC, raw sockets, etc.  
 
 ### Concurrency
 

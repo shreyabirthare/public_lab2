@@ -5,9 +5,10 @@ Spring 2022
 
 # Lab 2: Tiered Microservices-based Toy Store
 
-## Team Members
+### Team Members
 
-List the names of the grouop members here. You can replace this readme file with your own documention, in which case, please list the names of all team members at the top of the readme.
+List the names of the group members here. You can replace this readme file with your own documention, in which case, please list the names of all team members at the top of the readme.
+
 
 
 ## Goals and Learning Outcomes
@@ -220,6 +221,8 @@ Using these measurements, answer the following questions:
 At the top of this README file add the name(s) and umass email address(es) of all the team members .
 Also if you are working in a group, briefly describe how the work is divided.
 
+
+
 You solution should contain source code for both parts separately. Inside the `src` directory, you
 should have a separate folder for each component/microservice, e.g., a `client` folder for client
 code, a `front-end` folder for the front-end service, etc.
@@ -227,6 +230,8 @@ code, a `front-end` folder for the front-end service, etc.
 The dockerfiles and docker compose files should be placed under the root folder. Also include a
 `build.sh` script that can build all your images. This script should be able to build your images on
 Edlab machines.
+
+A short README file on how to run your code. Include build/make files if you created any, otherwise the README instructions on running the code  should provide details on how to do so.
 
 Submit the following additional documents inside the docs directory. 1) A Brief design document (1
 to 2 pages) that explains your design choices (include citations, if you used referred to Internet

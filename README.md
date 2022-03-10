@@ -196,7 +196,7 @@ as one should).
     * An output file should be included (5%),
     * GitHub repo should have adequate commits and meaningful commit messages (5%).
 
-2) Part 2 is 35% of the lab grade.
+2) Part 2 is 30% of the lab grade.
 
     For full credit:
 
@@ -205,7 +205,7 @@ as one should).
         command (10%),
     * The catalog file and order log file should be persisted after container removal (5%).
 
-3) Part 3 is % of the grade.
+3) Part 3 is 20% of the grade.
 
     For full credit:
 

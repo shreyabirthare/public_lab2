@@ -8,8 +8,7 @@ Spring 2022
 
 1. Learn about multi-tier architecture and microservices.
 2. Learn how to implement a REST API server.
-3. Learn how to handle cache consistency.
-4. Learn how to containerize your service using Docker, and how to manage an application consisting
+3. Learn how to containerize your service using Docker, and how to manage an application consisting
    of multiple containers using Docker Compose.
 
 ## Instructions

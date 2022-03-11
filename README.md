@@ -3,7 +3,7 @@ Compsci 677: Distributed and Operating Systems
 Spring 2022
 
 
-# Lab 2: Tiered Microservices-based Toy Store
+# Lab 2: Tiered Microservices-Based Toy Store
 
 ### Team Members
 
@@ -14,9 +14,9 @@ List the names of the group members here. You can replace this readme file with 
 ## Goals and Learning Outcomes
 
 This lab has the following learning outcomes with regards to concepts covered in class.
-1. Design distributed server applications using multi-tier architecture and microservices.
-2. Design virtualized applications 
-3. Design interfaces for web application 
+1. Design distributed server applications using a multi-tier architecture and microservices.
+2. Design virtualized applications.
+3. Design interfaces for web application.
 
 The lab also has the following learning outcomes with regards to practice and modern technologies.
 1. Learn how to implement a REST API server.
@@ -38,9 +38,9 @@ The lab also has the following learning outcomes with regards to practice and mo
 ## Lab Description
 
 In this lab we will extend the toy store application that we implemented in the first lab. 
-Instead of using a monolithic server, we will now employ a two-tier design for the Toy Store - a front-end tier and a
-back-end tier - and use microservices at each tier. The front-end is implemented as a single
-microservice, while the back-end tier is implemented as two separate services: a catalog service and
+Instead of using a monolithic server, we will now employ a two-tier design for the Toy Store (a front-end tier and a
+back-end tier) using microservices at each tier. The front-end is implemented as a single
+microservice, while the back-end is implemented as two separate services: a catalog service and
 an order service.
 
 Note: You are not required to use any code from Lab 1, but please feel free to use any parts of lab 1 for lab 2 if it is useful to you.
@@ -107,14 +107,13 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     ```
 
     In case of error, the front-end service returns a JSON reply with a top-level `error` object,
-    which has two fields `code` and `message`, similar to the product query API.
+    which has two fields, `code` and `message`, similar to the product query API.
 
 The server should listen to HTTP requests on a socket port  (normally, this would be port 80 for HTTP, but we suggest using a higher-numbered port since your machine may need admin/root privileges to listen on port 80). 
-Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model(or more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API
-and sent back to the client as a HTTP reply. 
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model (or more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API and sent back to the client as a HTTP reply. 
 
 
-**Note that when implementing the front-end service you can NOT using existing web frameworks
+**Note that when implementing the front-end service you can NOT use existing web frameworks
 such as [`Django`](https://github.com/perwendel/spark),
 [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
 etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to developer. The goal here is to understand the details, which is why you need to implement them youself rather than using a web framework.
@@ -128,16 +127,16 @@ Piazza.
 ### Catalog Service
 
 When the front-end service receives a query request, it will forward the request to the catalog
-service. The catalog service needs to maintain the catalog data, both in memory  and in a CSV or text
+service. The catalog service needs to maintain the catalog data, both in memory and in a CSV or text
 file on disk ("database"). The disk file will persist the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
 
- While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your deisgn). 
+While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
  
- The catalog service is implemented as a server that listens to request from the front-end service or the order 
- service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
- should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
+The catalog service is implemented as a server that listens to request from the front-end service or the order 
+service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
+should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
  
- Like the front-end server, you shoud employ threads to service incoming request. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
+Like the front-end server, you shoud employ threads to service incoming request. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
  
 
 ### Order Service
@@ -177,26 +176,26 @@ concurrency models taught in class: thread-per-request, threadpool, async, etc.
 ## Part 2: Containerize Your Application
 
 In this part, you will first containerize your application code and then learn to deploy all components 
-as a distributed application  using docker. If you are not familiar with docker, be sure to look at 
+as a distributed application  using Docker. If you are not familiar with Docker, be sure to look at 
 homework 5, which provides a hands-on tutorial. Also review the references at the end of this file.
 
 First, create a dockerfile for each of the three microservices that you implemented in part 1. Verify that
 they build and run without issue.
 
-After that write a docker compose file that can bring up (or tear down) all three services using one
+After that write a Docker compose file that can bring up (or tear down) all three services using one
 `docker-compose up` (or `docker-compose down`) command.
 
-Note that files you write in a docker container are not directly accessible from the host, and they
+Note that files you write in a Docker container are not directly accessible from the host, and they
 will be erased when the container is removed. Therefore, you should mount a directory on the host as
 a volume to the **catalog** and **order** services, so that files and output can be persisted after the containers
 are removed.
 
-Another thing to notice is that when you use docker compose to bring up containers it will set up a
+Another thing to notice is that when you use Docker compose to bring up containers it will set up a
 new network for all the containers, the containers will have a different IP address in this network
-than your host IP address. Therefore, you need to consider how to pass the ip/hostnames to the
+than your host IP address. Therefore, you need to consider how to pass the IP/hostnames to the
 services so that they know how to locate other services regardless of whether they are running on
-"bare metal" or inside containers. (HINT: you can set environment variables when building a docker
-image or in a docker compose file).
+"bare metal" or inside containers. (HINT: you can set environment variables when building a Docker
+image or in a Docker compose file).
 
 ## Part 3: Testing and Performance Evaluation
 
@@ -210,7 +209,7 @@ Vary the number of clients from 1 to 5 and measure the latency as the load goes 
 
 Using these measurements, answer the following questions:
 
-1. Does the latency of the application change with and without docker containers? Did virtualization add any overheads?
+1. Does the latency of the application change with and without Docker containers? Did virtualization add any overheads?
 2. How does the laency of the query compare to buy? Since buy requests involve all theee microservices, while query requests only involve two microservices, does it impact the observed latency? 
 3. How does the latency change as the number of clients change? Does it change for different types of requests?
 
@@ -218,16 +217,14 @@ Using these measurements, answer the following questions:
 
 ## What to Submit
 
-At the top of this README file add the name(s) and umass email address(es) of all the team members .
+At the top of this README file add the name(s) and umass email address(es) of all the team members.
 Also if you are working in a group, briefly describe how the work is divided.
-
-
 
 You solution should contain source code for both parts separately. Inside the `src` directory, you
 should have a separate folder for each component/microservice, e.g., a `client` folder for client
 code, a `front-end` folder for the front-end service, etc.
 
-The dockerfiles and docker compose files should be placed under the root folder. Also include a
+The dockerfiles and Docker compose files should be placed under the root folder. Also include a
 `build.sh` script that can build all your images. This script should be able to build your images on
 Edlab machines.
 
@@ -255,7 +252,7 @@ as one should).
 
     * Source code should build and work correctly (25%),
     * Code should have in-line comments (5%),
-    * A descriptive design doc should be submitted  (10%),
+    * A descriptive design doc should be submitted (10%),
     * An output file should be included (5%),
     * GitHub repo should have adequate commits and meaningful commit messages (5%).
 
@@ -277,9 +274,9 @@ as one should).
     * Explaining the plots by addressing answers to the 4 questions listed in Part 3 (5%)
     * Test cases and test case output (5%)
 
-Late policy will include 10% of points per day. Medical or covid exceptions require advance notice,
-and should be submitted through pizza (use exceptionRequests folder in pizza). Three free late days
-per group are available for the entire semester - use them wisely and do not use them up for one lab
+As the late policy, will we deduct 10% per day. Medical or COVID exceptions require advanced notice,
+and should be submitted through Piazza (use the exceptionRequests folder in Piazza). Three free late days
+per group are available for the entire semester. Use them wisely and do not use them up for one lab
 by managing your time well.
 
 ## References

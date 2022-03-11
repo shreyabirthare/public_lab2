@@ -45,7 +45,7 @@ an order service.
 
 Note: You are not required to use any code from Lab 1, but please feel free to use any parts of lab 1 for lab 2 if it is useful to you.
 
-## Part 1: Implement Your a Tiered Toy Store as Microservices
+## Part 1: Implement Your Multi-Tiered Toy Store as Microservices
 
 ### Front-end Service
 

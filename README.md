@@ -7,21 +7,21 @@ Spring 2024
 
 ### Team Members
 
-List the names of the group members here. You can replace this readme file with your own documention, in which case, please list the names of all team members at the top of the readme.
+List the names of the group members here. You can replace this readme file with your own documentation, in which case, please list the names of all team members at the top of the readme.
 
 
 
 ## Goals and Learning Outcomes
 
-This lab has the following learning outcomes with regards to concepts covered in class.
+This lab has the following learning outcomes with regard to concepts covered in class.
 1. Design distributed server applications using a multi-tier architecture and microservices.
 2. Design virtualized applications.
-3. Design interfaces for web application.
+3. Design interfaces for web applications.
 
-The lab also has the following learning outcomes with regards to practice and modern technologies.
+The lab also has the following learning outcomes with regard to practice and modern technologies.
 1. Learn how to implement a REST API server.
 2. Learn to measure the performance of a distributed application.
-3. Learn how to use Docker to containerize your micro-service, and learn to manage an application consisting
+3. Learn how to use Docker to containerize your micro-service and learn to manage an application consisting
    of multiple containers using Docker Compose.
 4. Learn how to test a distributed application.
 
@@ -31,8 +31,8 @@ The lab also has the following learning outcomes with regards to practice and mo
     describe how the work is divided between the two team members in your README file.  Be sure to list
     the names of all team members at the top of this README file.
 
-2. You can use either python or Java for this assignment. You may optionally use C++ but TA support
-    for C++ issues will be limited. For this lab you may use different languages for different
+2. You can use either Python or Java for this assignment. You may optionally use C++, but TA support
+    for C++ issues will be limited. For this lab, you may use different languages for different
     microservices if you want.
 
 ## Lab Description
@@ -56,7 +56,7 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
 1. `GET /products/<product_name>`
 
     This API is used to query the details of a product. If the query is successful, the server
-    should return a JSON reply with a top-level `data` object. Similar to lab 1 the `data` object
+    should return a JSON reply with a top-level `data` object. Similar to lab 1, the `data` object
     has three fields: `name`, `price`, and `quantity`. For instance,
 
     ```json
@@ -69,10 +69,9 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     }
     ```
 
-    If things go wrong, for example if the product name provided by the client does not exist, the
+    If things go wrong, for example, if the product name provided by the client does not exist, the
     front-end service should return a JSON reply with a top-level `error` object. The `error` object
-    should contain two fields: `code` (for identifying the type of the error) and `message` (human
-    readable explanation of what went wrong). For instance,
+    should contain two fields: `code` (for identifying the type of the error) and `message` (human-readable explanation of what went wrong). For instance,
 
     ```json
     {
@@ -110,13 +109,13 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     which has two fields, `code` and `message`, similar to the product query API.
 
 The server should listen to HTTP requests on a socket port  (normally, this would be port 80 for HTTP, but we suggest using a higher-numbered port since your machine may need admin/root privileges to listen on port 80). 
-Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model (or more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API and sent back to the client as a HTTP reply. 
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model (or, more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service, as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API and sent back to the client as a HTTP reply. 
 
 
-**Note that when implementing the front-end service you can NOT use existing web frameworks
+**Note that when implementing the front-end service, you can NOT use existing web frameworks
 such as [`Django`](https://github.com/perwendel/spark),
 [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
-etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to developer. The goal here is to understand the details, which is why you need to implement them youself rather than using a web framework.
+etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to the developer. The goal here is to understand the details, which is why you need to implement them youself rather than using a web framework.
 
 You'll have to handle the HTTP requests directly in your application or you can implement your own simple web
 framework (this is actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to make this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
@@ -128,11 +127,11 @@ Piazza.
 
 When the front-end service receives a query request, it will forward the request to the catalog
 service. The catalog service needs to maintain the catalog data, both in memory and in a CSV or text
-file on disk ("database"). The disk file will persist the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
+file on disk ("database"). The disk file will persist in the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
 
 While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
  
-The catalog service is implemented as a server that listens to request from the front-end service or the order 
+The catalog service is implemented as a server that listens to requests from the front-end service or the order 
 service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
 should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
  
@@ -142,26 +141,26 @@ Like the front-end server, you shoud employ threads to service incoming request.
 ### Order Service
 
 When the front-end service receives an order request, it will forward the request to the order
-service. Obviously the order service still need to interact with the catalog service to complete the
+service. Obviously, the order service still needs to interact with the catalog service to complete the
 order. Specifically, a buy order should succeed only if the item is in stock, and the stock should be decremented.
 
 
-If the order was successful, the order service generates an order number and returns it to
-the front-end service. The order number should be an unique, incremental number, starting from 0.
-The order service also need to maintain the order log (including order number, product name, and
+If the order is successful, the order service generates an order number and returns it to
+the front-end service. The order number should be a unique, incremental number, starting from 0.
+The order service also needs to maintain the order log (including order number, product name, and
 quantity) in a persistent manner. Similar to the catalog service, we will just use a simple CSV or text file
 on disk as the persistent storage for the database.
 
-Like in the catalog service, you need to first design the interface exposed by your order service (i.e., list of functions and their input/outputs). You can use any method for front-end to involke this interface (e.g., socket, RPC, RMI, REST HTTP). Further, the order service should be threaded and should use synronization when writing to the order database file.
+Like in the catalog service, you need to first design the interface exposed by your order service (i.e., a list of functions and their input/outputs). You can use any method for front-end to involke this interface (e.g., socket, RPC, RMI, REST HTTP). Further, the order service should be threaded and should use synchronization when writing to the order database file.
 
 
 ### Client
 
-The client in this lab works in the following way. First it opens a HTTP connection with the front-end
+The client in this lab works in the following way. First, it opens an HTTP connection with the front-end
 service, then it randomly queries an item. If the returned quantity is greater than zero, with
-probability $p$ it will send another order request using the same connection. Make $p$ and
+probability $p$ it will send another order request using the same connection. Make $p$ an
 adjustable parameter in the range $[0, 1]$ so that you can test how your application performs when
-the percentage of order requests changes. A client can make a sequence of query and (optional) order for each such query based on probability $p$. This sequence of requests is called a session. Your front-end server should use a single thread to handle all requests from the session until the client closes the HTTP socket connection.  Make sure that the thread pool at the server is large enough to handle all active client and their sessions without starving. 
+the percentage of order requests changes. A client can make a sequence of queries and (optional) order for each such query based on probability $p$. This sequence of requests is called a session. Your front-end server should use a single thread to handle all requests from the session until the client closes the HTTP socket connection.  Make sure that the thread pool at the server is large enough to handle all active client and their sessions without starving. 
 
 ### Communication
 
@@ -181,7 +180,7 @@ In this part, you will first containerize your application code and then learn t
 as a distributed application  using Docker. If you are not familiar with Docker, be sure to look at 
 lablet 2, which provides a hands-on tutorial. Also, review the references at the end of this file.
 
-First, create a dockerfile for each of the three microservices that you implemented in part 1. Verify that
+First, create a docker file for each of the three microservices that you implemented in part 1. Verify that
 they build and run without issue.
 
 After that, write a Docker compose file that can bring up (or tear down) all three services using one

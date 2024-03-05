@@ -168,6 +168,8 @@ the percentage of order requests changes. A client can make a sequence of query 
 We have specified that the front-end service should provide a REST interface to the client, but have asked you to 
 design the interfaces exposed by the two backend micro-services.  As noted above, you can use REST API, RPC, RMI, gRPC, raw sockets, etc.  
 
+**Note:** If you make your own message protocol to interact between the client and the server, or send something like "GET /stocks/stocks_name" as the message (because of the example GET /stocks/<stock_name> given in the instructions), know that this is wrong and will result in deducted points.
+
 ### Concurrency
 
 It's important that all your microservices can handle requests concurrently. You can use any of the

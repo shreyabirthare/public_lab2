@@ -179,20 +179,20 @@ concurrency models taught in class: thread-per-request, threadpool, async, etc.
 
 In this part, you will first containerize your application code and then learn to deploy all components 
 as a distributed application  using Docker. If you are not familiar with Docker, be sure to look at 
-homework 5, which provides a hands-on tutorial. Also review the references at the end of this file.
+lablet 2, which provides a hands-on tutorial. Also, review the references at the end of this file.
 
 First, create a dockerfile for each of the three microservices that you implemented in part 1. Verify that
 they build and run without issue.
 
-After that write a Docker compose file that can bring up (or tear down) all three services using one
+After that, write a Docker compose file that can bring up (or tear down) all three services using one
 `docker-compose up` (or `docker-compose down`) command.
 
 Note that files you write in a Docker container are not directly accessible from the host, and they
 will be erased when the container is removed. Therefore, you should mount a directory on the host as
-a volume to the **catalog** and **order** services, so that files and output can be persisted after the containers
+a volume to the **catalog** and **order** services so that files and output can be persisted after the containers
 are removed.
 
-Another thing to notice is that when you use Docker compose to bring up containers it will set up a
+Another thing to notice is that when you use Docker compose to bring up containers, it will set up a
 new network for all the containers, the containers will have a different IP address in this network
 than your host IP address. Therefore, you need to consider how to pass the IP/hostnames to the
 services so that they know how to locate other services regardless of whether they are running on
@@ -201,44 +201,44 @@ image or in a Docker compose file).
 
 ## Part 3: Testing and Performance Evaluation
 
-In this part, you wil be testing the functionality and performance of your code.
+In this part, you will be testing the functionality and performance of your code.
 
-First, write some simple testcases to verify that your code works as expected. Be sure to test the code and error handling (e.g., by querying items that do not exist or buying items that are out of stock). Testing distributed applications is different from testing a single program. So you should try to test the full application as well as the micro-services. Write a few different test cases and attach output to show that it worked as expected.  Submit your testcases and the outputs in a test directory.
+First, write some simple test cases to verify that your code works as expected. Be sure to test the code and error handling (e.g., by querying items that do not exist or buying items that are out of stock). Testing distributed applications is different from testing a single program. So you should try to test the full application as well as the micro-services. Write a few different test cases and attach the output to show that it worked as expected.  Submit your test cases and the outputs in a test directory.
 
-Second, write some performance / load test to evaluate the performance of your application. Deploy more than one more client process and have each one make concurrent requests to the server. The clients should be running on a different machine than the server (use the EdLab, if needed). Measure the latency seen by the client for different types of requests, such as query and buy.
+Second, write some performance/load tests to evaluate the performance of your application. Deploy more than one client process and have each one make concurrent requests to the server. The clients should be running on a different machine than the server (use the EdLab, if needed). Measure the latency seen by the client for different types of requests, such as query and buy.
 
 Vary the number of clients from 1 to 5 and measure the latency as the load goes up. Make simple plots showing number of clients on the X-axis and response time/latency on the Y-axis. 
 
 Using these measurements, answer the following questions:
 
 1. Does the latency of the application change with and without Docker containers? Did virtualization add any overheads?
-2. How does the laency of the query compare to buy? Since buy requests involve all theee microservices, while query requests only involve two microservices, does it impact the observed latency? 
+2. How does the latency of the query compare to buy? Since buy requests involve all three microservices, while query requests only involve two microservices, does it impact the observed latency? 
 3. How does the latency change as the number of clients change? Does it change for different types of requests?
 
 
 
 ## What to Submit
 
-At the top of this README file add the name(s) and umass email address(es) of all the team members.
-Also if you are working in a group, briefly describe how the work is divided.
+At the top of this README file, add the name(s) and umass email address(es) of all the team members.
+Also, if you are working in a group, briefly describe how the work is divided.
 
-You solution should contain source code for both parts separately. Inside the `src` directory, you
+Your solution should contain source code for both parts separately. Inside the `src` directory, you
 should have a separate folder for each component/microservice, e.g., a `client` folder for client
 code, a `front-end` folder for the front-end service, etc.
 
-The dockerfiles and Docker compose files should be placed under the root folder. Also include a
+The docker files and Docker compose files should be placed under the root folder. Also, include a
 `build.sh` script that can build all your images. This script should be able to build your images on
 Edlab machines.
 
 A short README file on how to run your code. Include build/make files if you created any, otherwise the README instructions on running the code  should provide details on how to do so.
 
 Submit the following additional documents inside the docs directory. 1) A Brief design document (1
-to 2 pages) that explains your design choices (include citations, if you used referred to Internet
+to 2 pages) that explains your design choices (include citations if you used referred to Internet
 sources), 2) An Output file (1 to 2 pages), showing sample output or screenshots to indicate your
-program works, and 3) An Evaluation doc (2 to 3 pages), for part 3 showing plots and making
+program works, and 3) An Evaluation doc (2 to 3 pages) for part 3 showing plots and making
 observations.
 
-Submit your testcases in the test directory. Attach sample output of test cases on the docs directory.
+Submit your test cases in the test directory. Attach sample output of test cases on the docs directory.
 
 Your GitHub repo is expected to contain many commits with proper commit messages (which is good
 programming practice). Use GitHub to develop your lab and not just to submit the final version. We
@@ -262,8 +262,8 @@ as one should).
 
     For full credit:
 
-    * The dockerfiles should build each microservice successfully (15%),
-    * The docker compose file should be able to bring up/tear down the whole application using one
+    * The docker files should build each microservice successfully (15%),
+    * The docker-compose file should be able to bring up/tear down the whole application using one
         command (10%),
     * The catalog file and order log file should be persisted after container removal (5%).
 
@@ -276,8 +276,8 @@ as one should).
     * Explaining the plots by addressing answers to the 4 questions listed in Part 3 (5%)
     * Test cases and test case output (5%)
 
-As the late policy, will we deduct 10% per day. Medical or COVID exceptions require advanced notice,
-and should be submitted through Piazza (use the exceptionRequests folder in Piazza). Three free late days
+As the late policy, will we deduct 10% per day. Medical or COVID exceptions require advanced notice
+and should be submitted through Piazza (use the exception requests folder in Piazza). Three free late days
 per group are available for the entire semester. Use them wisely and do not use them up for one lab
 by managing your time well.
 

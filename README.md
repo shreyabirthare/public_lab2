@@ -3,13 +3,15 @@ Compsci 677: Distributed and Operating Systems
 Spring 2024
 
 
-# Lab 2: Tiered Microservices-Based Toy Store
+# Lab 2: Asterix and Tiered Microservices-Based Toy Store
 
-### Team Members
+ 
 
-List the names of the group members here. You can replace this readme file with your own documentation, in which case, please list the names of all team members at the top of the readme.
-
-
+## Information about your submission
+1. Name and email: add your name and email here. 
+2. Team member name and email: add team member info. say none if this is a solo submission
+3. Number of late days used for this lab: say zero if none used
+4. Number of late days used so far including this lab: say zero if none used.
 
 ## Goals and Learning Outcomes
 
@@ -30,10 +32,14 @@ The lab also has the following learning outcomes with regard to practice and mod
 1. You may work in groups of two for this lab. If you decide to work in groups, you should briefly
     describe how the work is divided between the two team members in your README file.  Be sure to list
     the names of all team members at the top of this README file.
-
-2. You can use either Python or Java for this assignment. You may optionally use C++, but TA support
-    for C++ issues will be limited. For this lab, you may use different languages for different
+2) You can use either Python or Java for this assignment. For this lab, you may use different languages for different
     microservices if you want.
+3) Use the following team naming format when you create your team on GitHub: spring24-lab2-GitHubid1-Githubid2. For example, spring24-lab2-alice-bob for a group of two. For a single group team, use spring24-lab2-alice as an example team name for a student with github id alice. If you already chose a different format for your team, edit your team name to the above format. 
+4) Do's and don'ts:
+   - discuss lab with other students: allowed
+   - use of AI tools: allowed with attribution (be sure to read the policy in the course syllabus)
+   - use code from others/Internet/friends/coders for hire: disallowed
+   - ask TAs for clarifications/help: always allowed
 
 ## Late days
 
@@ -44,7 +50,12 @@ Late days used so far:
 
 ## Lab Description
 
-In this lab we will extend the toy store application that we implemented in the first lab. 
+The year is 50 B.C.  The Gauls, led by Asterix and Obelix, are have had a lot of success with their online store, the first of of its kind 
+in all of Gaul. Even the Romans have begun to envy the conveience of receiving orders by carrier pigeon in the comfort of their homes.
+To accomodate growing demand, Asterix has decided to scale up their implementation by adopting a modern and scalable architecture.
+
+
+To do so, in this lab, we will extend the toy store application that you implemented in the first lab. 
 Instead of using a monolithic server, we will now employ a two-tier design for the Toy Store (a front-end tier and a
 back-end tier) using microservices at each tier. The front-end is implemented as a single
 microservice, while the back-end is implemented as two separate services: a catalog service and
@@ -127,8 +138,8 @@ etc.** Web frameworks already implement a lot of the functionality of lab 2 and 
 You'll have to handle the HTTP requests directly in your application or you can implement your own simple web
 framework (this is actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to make this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
 
-If you don't know how to get started on this part, be sure to check out the [FAQ](https://piazza.com/class/kymwriudjoy7c4?cid=220) on
-Piazza.
+If you don't know how to get started on this part, be sure to check out the [FAQ](https://piazza.com/class/ls3nga1lnag6g8/post/152) 
+ on Piazza.
 
 ### Catalog Service
 
@@ -139,7 +150,7 @@ file on disk ("database"). The disk file will persist in the state of the catalo
 While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrease) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
  
 The catalog service is implemented as a server that listens to requests from the front-end service or the order 
-service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
+service. The catalog service exposes an **internal interface** to these two components. As part of this lab, you 
 should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
  
 Like the front-end server, you should employ threads to service incoming requests. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
@@ -228,29 +239,36 @@ Using these measurements, answer the following questions:
 At the top of this README file, add the name(s) and umass email address(es) of all the team members.
 Also, if you are working in a group, briefly describe how the work is divided.
 
-Your solution should contain source code for both parts separately. Inside the `src` directory, you
+1. Your solution should contain source code for both parts separately. Inside the `src` directory, you
 should have a separate folder for each component/microservice, e.g., a `client` folder for client
 code, a `front-end` folder for the front-end service, etc.
 
-The docker files and Docker compose files should be placed under the root folder. Also, include a
+2. The docker files and Docker compose files should be placed under the root folder. Also, include a
 `build.sh` script that can build all your images. This script should be able to build your images on
 Edlab machines.
 
-A short README file on how to run your code. Include build/make files if you created any, otherwise the README instructions on running the code  should provide details on how to do so.
+3. A short README file on how to run your code. Include build/make files if you created any, otherwise the README instructions on running the code  should provide details on how to do so.
 
-Submit the following additional documents inside the docs directory. 1) A Brief design document (1
-to 2 pages) that explains your design choices (include citations if you used referred to Internet
+4. Submit the following additional documents inside the docs directory. 1) A  design document (2-3 pages) that 
+explains your design choices (include citations if you used referred to Internet
 sources), 2) An Output file (1 to 2 pages), showing sample output or screenshots to indicate your
 program works, and 3) An Evaluation doc (2 to 3 pages) for part 3 showing plots and making
 observations.
 
-Submit your test cases in the test directory. Attach sample output of test cases on the docs directory.
+5. Submit your test cases in the test directory. Attach sample output of test cases on the docs directory.
 
-Your GitHub repo is expected to contain many commits with proper commit messages (which is good
+6. Your GitHub repo is expected to contain many commits with proper commit messages (which is good
 programming practice). Use GitHub to develop your lab and not just to submit the final version. We
 expect a reasonable number of commits and meaningful commit messages from both members of the group
 (there is no "target" number of commits that is expected, just enough to show you are using GitHub
 as one should).
+
+Notes:
+ -  Since this is a graduate class, we assume you know how to write a good design doc. Writing proper technical descriptions to discuss the details
+   of your system is an important aspect of designing systems. To see some examples, please refer to https://www.designdocs.dev/library
+   for how well-known open-source projects provide good design docs. We strongly suggest using a format such as the one in
+   https://github.com/aws/eks-anywhere/blob/main/designs/single-node-cluster.md to write your design doc, and it should include
+   sections such as Introduction, Objective, Solutions overview/architecture, APIs, Testing, List of known issues/Alternatives, etc.
 
 ## Grading Rubric
 

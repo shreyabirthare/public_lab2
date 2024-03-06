@@ -141,7 +141,9 @@ If you don't know how to get started on this part, be sure to check out the [FAQ
 
 When the front-end service receives a query request, it will forward the request to the catalog
 service. The catalog service needs to maintain the catalog data, both in memory and in a CSV or text
-file on disk ("database"). The disk file will persist in the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
+file on disk ("database"). The disk file will persist in the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog.
+
+You should use all the toys mentioned in lab 1 for the catalog and also add fox (for Mozilla fans) or python (for Python fans) as items for sale.
 
 While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrease) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
  

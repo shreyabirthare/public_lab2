@@ -35,6 +35,12 @@ The lab also has the following learning outcomes with regard to practice and mod
     for C++ issues will be limited. For this lab, you may use different languages for different
     microservices if you want.
 
+## Late days
+
+Late days used for this lab: 
+Late days used so far: 
+
+
 ## Lab Description
 
 In this lab we will extend the toy store application that we implemented in the first lab. 
@@ -50,7 +56,7 @@ Note: You are not required to use any code from Lab 1, but please feel free to u
 ### Front-end Service
 
 The clients can communicate with the front-end service using the following two HTTP-based REST APIs.
-In a HTTP-based REST API, a client sends its request as an HTTP request and receives a reply as a HTTP response.
+In an HTTP-based REST API, a client sends its request as an HTTP request and receives a reply as an HTTP response.
 We will use HTTP GET and POST requests to send requests to the server. The server supports Query and Buy requests, like in Lab 1, but these are sent as HTTP REST requests as follows.  
 
 1. `GET /products/<product_name>`
@@ -109,13 +115,13 @@ We will use HTTP GET and POST requests to send requests to the server. The serve
     which has two fields, `code` and `message`, similar to the product query API.
 
 The server should listen to HTTP requests on a socket port  (normally, this would be port 80 for HTTP, but we suggest using a higher-numbered port since your machine may need admin/root privileges to listen on port 80). 
-Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model (or, more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service, as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API and sent back to the client as a HTTP reply. 
+Like before, the server should listen for incoming requests over HTTP and assign them to a thread pool. You can use any builtin thread pool for servicing client requests. Alternatively, you can also use a simple thread-per-request model (or, more precisely, thread-per-session)  to create a thread for each new client. The thread should first parse the HTTP request to extract the GET/POST command. Depending on whether it is a Query or a Buy, it should make a request to the Catalog or Order service, as discussed below. The response from this back-end service should be used to construct a json response as shown in the above API and sent back to the client as an HTTP reply. 
 
 
 **Note that when implementing the front-end service, you can NOT use existing web frameworks
 such as [`Django`](https://github.com/perwendel/spark),
 [`Flask`](https://github.com/pallets/flask), [`Spark`](https://github.com/perwendel/spark),
-etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to the developer. The goal here is to understand the details, which is why you need to implement them youself rather than using a web framework.
+etc.** Web frameworks already implement a lot of the functionality of lab 2 and provide higher-level abstractions to the developer. The goal here is to understand the details, which is why you need to implement them yourself rather than using a web framework.
 
 You'll have to handle the HTTP requests directly in your application or you can implement your own simple web
 framework (this is actually not as hard as you may think). Languages such as Python and Java provide HTTP libraries to make this straightforward for you, and you should use them to implement HTTP clients and the front-end service.
@@ -129,13 +135,13 @@ When the front-end service receives a query request, it will forward the request
 service. The catalog service needs to maintain the catalog data, both in memory and in a CSV or text
 file on disk ("database"). The disk file will persist in the state of the catalog. When the service starts up, it should initialize itself from the database disk file.  In production applications, a real database engine is used for this part, but here we will use a file to maintain the catalog. 
 
-While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrement) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
+While query requests will simply read the catalog, buy requests will be sent to the order service, which will then contact the catalog service to update (decrease) the stock of items in the catalog. These updates should be written out to the catalog on disk (immediately or periodically, depending on your design). 
  
 The catalog service is implemented as a server that listens to requests from the front-end service or the order 
 service. The catalog service exposes an internal interface to these two components. As part of this lab, you 
 should first design the interface (i.e., list of exposed functions and their inputs/outputs) for the catalog service and clearly describe it in your design doc. You can use  any mechanism of choice to implement the interface for the catalog (e.g., sockets, RPC (e.g., pyro), RMI (e.g., java RMI), gRPC, or HTTP REST). You should describe how you implemented your interface in your design doc.
  
-Like the front-end server, you shoud employ threads to service incoming request. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
+Like the front-end server, you should employ threads to service incoming requests. Since the catalog can be accessed concurrently by more than one thread, use synchronization to protect reads and updates to the catalog. While simple locks are acceptable, we suggest using read-write locks for higher performance. 
  
 
 ### Order Service
@@ -151,7 +157,7 @@ The order service also needs to maintain the order log (including order number, 
 quantity) in a persistent manner. Similar to the catalog service, we will just use a simple CSV or text file
 on disk as the persistent storage for the database.
 
-Like in the catalog service, you need to first design the interface exposed by your order service (i.e., a list of functions and their input/outputs). You can use any method for front-end to involke this interface (e.g., socket, RPC, RMI, REST HTTP). Further, the order service should be threaded and should use synchronization when writing to the order database file.
+Like in the catalog service, you need to first design the interface exposed by your order service (i.e., a list of functions and their input/outputs). You can use any method for front-end to invoke this interface (e.g., socket, RPC, RMI, REST HTTP). Further, the order service should be threaded and should use synchronization when writing to the order database file.
 
 
 ### Client
@@ -188,7 +194,7 @@ After that, write a Docker compose file that can bring up (or tear down) all thr
 
 Note that files you write in a Docker container are not directly accessible from the host, and they
 will be erased when the container is removed. Therefore, you should mount a directory on the host as
-a volume to the **catalog** and **order** services so that files and output can be persisted after the containers
+a volume to the **catalog** and **order** services so that files and output can persist after the containers
 are removed.
 
 Another thing to notice is that when you use Docker compose to bring up containers, it will set up a
@@ -206,13 +212,13 @@ First, write some simple test cases to verify that your code works as expected. 
 
 Second, write some performance/load tests to evaluate the performance of your application. Deploy more than one client process and have each one make concurrent requests to the server. The clients should be running on a different machine than the server (use the EdLab, if needed). Measure the latency seen by the client for different types of requests, such as query and buy.
 
-Vary the number of clients from 1 to 5 and measure the latency as the load goes up. Make simple plots showing number of clients on the X-axis and response time/latency on the Y-axis. 
+Vary the number of clients from 1 to 5 and measure the latency as the load goes up. Make simple plots showing the number of clients on the X-axis and response time/latency on the Y-axis. 
 
 Using these measurements, answer the following questions:
 
 1. Does the latency of the application change with and without Docker containers? Did virtualization add any overheads?
 2. How does the latency of the query compare to buy? Since buy requests involve all three microservices, while query requests only involve two microservices, does it impact the observed latency? 
-3. How does the latency change as the number of clients change? Does it change for different types of requests?
+3. How does the latency change as the number of clients changes? Does it change for different types of requests?
 
 
 
@@ -275,7 +281,7 @@ as one should).
     * Explaining the plots by addressing answers to the 4 questions listed in Part 3 (5%)
     * Test cases and test case output (5%)
 
-As the late policy, will we deduct 10% per day. Medical or COVID exceptions require advanced notice
+For late policy, we will deduct 10% per day. Medical or COVID exceptions require advanced notice
 and should be submitted through Piazza (use the exception requests folder in Piazza). Three free late days
 per group are available for the entire semester. Use them wisely and do not use them up for one lab
 by managing your time well.

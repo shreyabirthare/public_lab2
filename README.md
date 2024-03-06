@@ -38,6 +38,7 @@ The lab also has the following learning outcomes with regard to practice and mod
 ## Late days
 
 Late days used for this lab: 
+
 Late days used so far: 
 
 

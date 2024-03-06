@@ -41,11 +41,7 @@ The lab also has the following learning outcomes with regard to practice and mod
    - use code from others/Internet/friends/coders for hire: disallowed
    - ask TAs for clarifications/help: always allowed
 
-## Late days
 
-Late days used for this lab: 
-
-Late days used so far: 
 
 
 ## Lab Description

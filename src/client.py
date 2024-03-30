@@ -9,17 +9,17 @@ client_no=random.randint(1,1000)
 # Function to perform a single session of queries and orders
 def perform_session():
     # Open an HTTP connection with the front-end service
-    #session = requests.Session()
+    session = requests.Session()
 
     # List of available products
     products = ["Tux", "Fox", "Python"]
 
-    for _ in range(7):  # Loop from 1 to 7
+    for _ in range(50):  # Loop from 1 to 7
         # Randomly choose a product
         product = random.choice(products)
 
         # Query the availability of the chosen product
-        response = requests.get(f"http://localhost:8080/products/{product}")
+        response = session.get(f"http://localhost:8080/products/{product}")
 
         # Print the data or error message from the query request
         try:
@@ -41,7 +41,7 @@ def perform_session():
                 print(f"placing order for {product} , {qty}")
 
                 # Place an order
-                order_response = requests.post("http://localhost:8080/orders/", json=order_data)
+                order_response = session.post("http://localhost:8080/orders/", json=order_data)
 
                 # Print the data or error message from the order request
                 try:
@@ -52,6 +52,7 @@ def perform_session():
         
         # Sleep for a short duration before the next iteration
         time.sleep(random.uniform(0.5, 2.0))
+    session.close()
 
 if __name__ == "__main__":
     perform_session()

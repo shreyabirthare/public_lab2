@@ -48,6 +48,7 @@ def handle_buy(order_data):
     global catalog
     product_name = order_data.get("name")
     quantity = order_data.get("quantity")
+    
     if not product_name or not quantity:
         print("product not found/bad req")
         return 400
@@ -57,19 +58,6 @@ def handle_buy(order_data):
             print("product is in stock, updating catalog")
             catalog[product_name]['quantity'] -= quantity  # Deduct the purchased quantity from the catalog
             # Update the quantity in the catalog CSV file
-            '''
-            with open(CATALOG_FILE, 'r+') as file:
-                reader = csv.DictReader(file)
-                rows = list(reader)
-                for row in rows:
-                    if row['name'] == product_name:
-                        row['quantity'] = str(int(row['quantity']) - int(quantity))
-                        break
-                file.seek(0)
-                writer = csv.DictWriter(file, fieldnames=['name', 'price', 'quantity'])
-                writer.writeheader()
-                writer.writerows([row])  # Write only the modified row
-                 '''
             # Update the quantity in the catalog CSV file
             with open(CATALOG_FILE, 'r') as file:
                 reader = csv.DictReader(file)
@@ -99,7 +87,7 @@ class CatalogRequestHandler(BaseHTTPRequestHandler):
         product_info, response_code = handle_query(product_name)
         self.send_response(response_code)
         if product_info:
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Type', 'application/json')
             self.end_headers()
             product_response = json.dumps(product_info)      #json.dumps(response_data).encode('utf-8')
             self.wfile.write(product_response.encode('utf-8'))
@@ -110,7 +98,15 @@ class CatalogRequestHandler(BaseHTTPRequestHandler):
         #print(f"Raw response for buy query: {post_data.text}")
         response_code = handle_buy(post_data)
         self.send_response(response_code)
-        
+
+        if response_code == 200:
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({"message": "Order processed successfully"}).encode('utf-8'))
+        else:
+            self.send_header('Content-Type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(f"Order failed: {response_code}".encode('utf-8'))
 
 # Start the catalog service
 def start_catalog_service():

@@ -48,6 +48,7 @@ class OrderRequestHandler(BaseHTTPRequestHandler):
             
             # Send a POST request to the catalog service
             catalog_response = requests.post("http://localhost:8081/orders", json=post_data)
+            print("response code from catalog ",catalog_response.status_code)
             if catalog_response.status_code == 200:
                 print("success from catalog side")
                 order_number = generate_order_number()

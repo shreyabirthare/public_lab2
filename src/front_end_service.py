@@ -32,7 +32,7 @@ class FrontendHandler(BaseHTTPRequestHandler):
                 self.wfile.write(json.dumps(error_message).encode('utf-8'))
 
     def do_POST(self):
-        print(f"Thread ID {threading.get_ident()} handling request from {self.client_address}")
+        print(f"Thread ID {(threading.get_ident())} handling request from {self.client_address}")
         parsed_path = urllib.parse.urlparse(self.path)
         if parsed_path.path.startswith("/orders/"):
             order_data = json.loads(self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8'))
@@ -56,18 +56,6 @@ class FrontendHandler(BaseHTTPRequestHandler):
                 error_message = {"error": {"code": 400, "message": "bad request"}}
                 self.wfile.write(json.dumps(error_message).encode('utf-8'))
 
-
-class ClientThread(threading.Thread):
-    def __init__(self, client_address, request_handler):
-        threading.Thread.__init__(self)
-        self.client_address = client_address
-        self.request_handler = request_handler
-
-    def run(self):
-        # Handle requests from the client until the client closes the connection
-        while True:
-            print(f"Thread ID {threading.get_ident()} handling request from {self.client_address}")
-            self.request_handler.handle_request()
 host = 'localhost'
 port = 8080
 

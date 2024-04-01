@@ -3,7 +3,15 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import urllib.parse
 import threading
 import requests
-FRONTEND_PORT = 8080
+import os
+
+FRONT_END_PORT = int(os.getenv('FRONT_END_PORT',12500))
+CATALOG_PORT = int(os.getenv('CATALOG_PORT',12501))
+ORDER_PORT = int(os.getenv('ORDER_PORT',12502))
+
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost')
+CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
+ORDER_HOST = os.getenv('ORDER_HOST', 'localhost')
 
 class FrontendHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -11,7 +19,7 @@ class FrontendHandler(BaseHTTPRequestHandler):
         parsed_path = urllib.parse.urlparse(self.path)
         if parsed_path.path.startswith("/products/"):
             product_name = parsed_path.path.split("/")[-1]
-            product_info = requests.get(f"http://localhost:8081/{product_name}")
+            product_info = requests.get(f"http://{CATALOG_HOST}:{CATALOG_PORT}/{product_name}")
             print("raw res:",product_info.text)
             if product_info.status_code==200:
                 self.send_response(200)
@@ -37,7 +45,7 @@ class FrontendHandler(BaseHTTPRequestHandler):
         if parsed_path.path.startswith("/orders/"):
             order_data = json.loads(self.rfile.read(int(self.headers['Content-Length'])).decode('utf-8'))
             try:
-                order_info = requests.post("http://localhost:8082/orders", json=order_data)
+                order_info = requests.post(f"http://{ORDER_HOST}:{ORDER_PORT}/orders", json=order_data)
                 if order_info.status_code==200:
                     self.send_response(200)
                     self.send_header("Content-type", "application/json")
@@ -56,8 +64,9 @@ class FrontendHandler(BaseHTTPRequestHandler):
                 error_message = {"error": {"code": 400, "message": "bad request"}}
                 self.wfile.write(json.dumps(error_message).encode('utf-8'))
 
-host = 'localhost'
-port = 8080
+# host = 'localhost'
+host = FRONTEND_HOST
+port = FRONT_END_PORT
 
 frontend_server = ThreadingHTTPServer((host, port), FrontendHandler)
 

@@ -4,11 +4,14 @@ import requests
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import urllib.parse
 import csv
+import os
 
-CATALOG_PORT = 8081
+CATALOG_PORT = int(os.getenv('CATALOG_LISTENING_PORT',12501))
 CATALOG_FILE = "catalog.csv"
 LOCK = threading.Lock()
-host='localhost'
+CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
+# host='localhost'
+host = CATALOG_HOST
 # Public catalog dictionary
 catalog = {}
 

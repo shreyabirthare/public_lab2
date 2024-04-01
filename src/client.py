@@ -2,6 +2,10 @@ import json
 import random
 import time
 import requests
+import os
+
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost')
+FORNT_END_PORT = int(os.getenv('FRONTEND_LISTENING_PORT',12500))
 
 # Adjust this parameter to control the probability of placing an order
 probability_order = 0.5
@@ -19,7 +23,7 @@ def perform_session():
         product = random.choice(products)
 
         # Query the availability of the chosen product
-        response = session.get(f"http://localhost:8080/products/{product}")
+        response = session.get(f"http://{FRONTEND_HOST}:{FORNT_END_PORT}/products/{product}")
 
         # Print the data or error message from the query request
         try:
@@ -41,7 +45,7 @@ def perform_session():
                 print(f"placing order for {product} , {qty}")
 
                 # Place an order
-                order_response = session.post("http://localhost:8080/orders/", json=order_data)
+                order_response = session.post(f"http://{FRONTEND_HOST}:{FORNT_END_PORT}/orders/", json=order_data)
 
                 # Print the data or error message from the order request
                 try:

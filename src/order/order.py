@@ -6,10 +6,14 @@ import requests
 import csv
 import os
 
-ORDER_PORT = 8082
+ORDER_PORT = int(os.getenv('ORDER_LISTENING_PORT',12502))
+CATALOG_PORT = int(os.getenv('CATALOG_LISTENING_PORT',12501))
 ORDER_FILE = "order_log.csv"
 LOCK = threading.Lock()
-host = 'localhost'
+CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
+ORDER_HOST = os.getenv('ORDER_HOST', 'localhost')
+host=ORDER_HOST
+# host = 'localhost'
 
 # Global variable to store the order number
 order_number = 0
@@ -47,7 +51,7 @@ class OrderRequestHandler(BaseHTTPRequestHandler):
             post_data = json.loads(self.rfile.read(content_length))
             
             # Send a POST request to the catalog service
-            catalog_response = requests.post("http://localhost:8081/orders", json=post_data)
+            catalog_response = requests.post(f"http://{CATALOG_HOST}:{CATALOG_PORT}/orders", json=post_data)
             print("response code from catalog ",catalog_response.status_code)
             if catalog_response.status_code == 200:
                 print("success from catalog side")

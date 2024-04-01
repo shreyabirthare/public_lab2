@@ -5,7 +5,7 @@ import threading
 import requests
 import os
 
-FRONT_END_PORT = int(os.getenv('FRONT_END_PORT',12500))
+FRONT_END_PORT = int(os.getenv('FRONTEND_LISTENING_PORT',12500))
 CATALOG_PORT = int(os.getenv('CATALOG_PORT',12501))
 ORDER_PORT = int(os.getenv('ORDER_PORT',12502))
 

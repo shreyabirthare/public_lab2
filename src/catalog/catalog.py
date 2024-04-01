@@ -42,7 +42,10 @@ def handle_query(product_name):
     with LOCK:
         
         if product_name in catalog:
-            return catalog[product_name], 200
+            #return catalog[product_name], 200
+            product_info = catalog[product_name]
+            response_data = {'name': product_name, 'price': product_info['price'], 'quantity': product_info['quantity']}
+            return response_data, 200
         else:
             return None, 404
 
@@ -60,7 +63,6 @@ def handle_buy(order_data):
         if product_name in catalog and catalog[product_name]['quantity'] >= quantity:
             print("product is in stock, updating catalog")
             catalog[product_name]['quantity'] -= quantity  # Deduct the purchased quantity from the catalog
-            # Update the quantity in the catalog CSV file
             # Update the quantity in the catalog CSV file
             with open(CATALOG_FILE, 'r') as file:
                 reader = csv.DictReader(file)

@@ -40,9 +40,11 @@ docker run -d --network my_network --name order-container -p 12502:12502 \
   -e CATALOG_PORT=12501 \
   -e ORDER_HOST=order-container \
   -e ORDER_PORT=12502 \
+  -v "$(pwd)/order/order_data:/spring24-lab2-spring24-lab2-shreya-simran/src/order/order_data" \
   order-image
 
 docker run -d --network my_network --name catalog-container -p 12501:12501 \
   -e CATALOG_HOST=catalog-container \
   -e CATALOG_PORT=12501 \
+  -v "$(pwd)/catalog/catalog_data:/spring24-lab2-spring24-lab2-shreya-simran/src/catalog/catalog_data" \
   catalog-image

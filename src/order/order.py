@@ -8,7 +8,7 @@ import os
 
 ORDER_PORT = int(os.getenv('ORDER_LISTENING_PORT',12502))
 CATALOG_PORT = int(os.getenv('CATALOG_LISTENING_PORT',12501))
-ORDER_FILE = "order_log.csv"
+ORDER_FILE = "order_data/order_log.csv"
 LOCK = threading.Lock()
 CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
 ORDER_HOST = os.getenv('ORDER_HOST', 'localhost')

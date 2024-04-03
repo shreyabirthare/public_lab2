@@ -17,7 +17,7 @@ def perform_session():
     # Start time
     startTime = time.time()
     # List of available products
-    products = ["Tux", "Fox", "Python"]
+    products = ["Tux", "Whale", "Fox", "Python"]
 
     for _ in range(50):  # Loop from 1 to 7
         # Randomly choose a product

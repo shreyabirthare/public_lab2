@@ -13,8 +13,6 @@ class FrontEndServiceTest(unittest.TestCase):
 
     # def test_query_non_existing_product(self):
     #     response = requests.get(f'{self.FRONT_END_URL}/products/Crocodile')
-    #     data = response.json()
-    #     print(data)
     #     self.assertEqual(response.status_code, 404)
 
 class CatalogServiceTest(unittest.TestCase):
@@ -28,27 +26,28 @@ class CatalogServiceTest(unittest.TestCase):
         self.assertEqual(data['name'], 'Tux')
 
 
-#     def test_update_product_quantity_directly(self):
-#         response = requests.post(f'{self.CATALOG_URL}/update', json={'name': 'Tux', 'quantity': 10000})
-#         self.assertEqual(response.status_code, 200)
-#         product_response = requests.get(f'{self.CATALOG_URL}/Tux')
-#         self.assertEqual(product_response.status_code, 200)
-#         product_data = product_response.json()
-#         self.assertEqual(product_data.get('quantity'), 10000)
+    def test_buy_product_successfully(self):
+        buy_product_data = {'name': 'Fox', 'quantity': 1}
+        response = requests.post(f'{self.CATALOG_URL}/buy', json=buy_product_data)
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+        self.assertEqual(response_data.get("message"), "Order processed successfully")
 
+    def test_buy_non_existent_product(self):
+        buy_product_data = {'name': 'Caterpillar', 'quantity': 1}
+        response = requests.post(f'{self.CATALOG_URL}/buy', json=buy_product_data)
+        self.assertNotEqual(response.status_code, 200)
 
 class OrderServiceTest(unittest.TestCase):
     ORDER_URL = 'http://localhost:12502'
+    CATALOG_URL = 'http://localhost:12501'
 
-    # def test_place_order_directly(self):
-    #     response = requests.post(f'{self.ORDER_URL}/orders', json={'name': 'Fox', 'quantity': 1})
-    #     self.assertEqual(response.status_code, 200)
-    #     data = response.json()
-    #     self.assertIn('order_number', data)
-    #     self.assertIn('name', data)
-    #     self.assertIn('quantity', data)
-    #     self.assertEqual(data['name'], 'Fox')
-    #     self.assertEqual(data['quantity'], 1)
+    def test_place_order_successfully(self):
+        order_data = {'name': 'Python', 'quantity': 10}
+        response = requests.post(f'{self.ORDER_URL}/orders', json=order_data)
+        self.assertEqual(response.status_code, 200)
+        order_response_data = response.json()
+        self.assertTrue('order_number' in order_response_data)
 
     def test_quantity_more_than_available(self):
         response = requests.post(f'{self.ORDER_URL}/orders', json={'name': 'Tux', 'quantity': 500000})

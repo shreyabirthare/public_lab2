@@ -5,7 +5,7 @@ import requests
 import os
 
 FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost')
-FORNT_END_PORT = int(os.getenv('FRONTEND_LISTENING_PORT',12500))
+FORNT_END_PORT = int(os.getenv('FRONTEND_LISTENING_PORT',12503))
 
 # Adjust this parameter to control the probability of placing an order
 probability_order = 0.5

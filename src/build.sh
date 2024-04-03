@@ -26,9 +26,9 @@ docker build --no-cache -f catalog.Dockerfile -t catalog-image .
 docker build --no-cache -f order.Dockerfile -t order-image .
 
 # Run the docker containers with hardcoded values
-docker run -d --network my_network --name frontend-container -p 12500:12500 \
+docker run -d --network my_network --name frontend-container -p 12503:12503 \
   -e FRONTEND_HOST=frontend-container \
-  -e FRONT_END_PORT=12500 \
+  -e FRONT_END_PORT=12503 \
   -e CATALOG_HOST=catalog-container \
   -e CATALOG_PORT=12501 \
   -e ORDER_HOST=order-container \

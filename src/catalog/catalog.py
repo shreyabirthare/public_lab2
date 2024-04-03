@@ -7,7 +7,7 @@ import csv
 import os
 
 CATALOG_PORT = int(os.getenv('CATALOG_LISTENING_PORT',12501))
-CATALOG_FILE = "catalog.csv"
+CATALOG_FILE = "catalog_data/catalog.csv"
 LOCK = threading.Lock()
 CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
 # host='localhost'

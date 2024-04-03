@@ -6,16 +6,17 @@ import urllib.parse
 import csv
 import os
 
+#initializing catalog_service host and port, lock, catalog file
 CATALOG_PORT = int(os.getenv('CATALOG_LISTENING_PORT',12501))
 CATALOG_FILE = "catalog_data/catalog.csv"
 LOCK = threading.Lock()
 CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
 # host='localhost'
 host = CATALOG_HOST
-# Public catalog dictionary
+# making a public catalog dictionary
 catalog = {}
 
-# Function to load catalog data from disk
+# method to load catalog from disk every time server starts.
 def load_catalog():
     global catalog
     with LOCK:
@@ -24,33 +25,32 @@ def load_catalog():
                 reader = csv.DictReader(file)
                 catalog = {row['name']: {'price': float(row['price']), 'quantity': int(row['quantity'])} for row in reader}
         except FileNotFoundError:
-            # If the file does not exist, initialize the catalog with default values
+            # If the file does not exist, set the catalog with these default values
             catalog = {
-                "Tux": {"price": 15.99, "quantity": 10000},
-                "Whale": {"price": 25.99, "quantity": 8000},
-                "Fox": {"price": 12.99, "quantity": 5000},
-                "Python": {"price": 20.99, "quantity": 6500}
+                "Tux": {"price": 15.99, "quantity": 350},
+                "Whale": {"price": 25.99, "quantity": 250},
+                "Fox": {"price": 12.99, "quantity": 450},
+                "Python": {"price": 20.99, "quantity": 400}
             }
-            # Save the initial catalog to a new file
+            # default catalog is saved to new file
             with open(CATALOG_FILE, 'w', newline='') as file:
                 writer = csv.DictWriter(file, fieldnames=['name', 'price', 'quantity'])
                 writer.writeheader()
                 for name, details in catalog.items():
                     writer.writerow({'name': name, 'price': details['price'], 'quantity': details['quantity']})
 
-# Function to handle product query requests
+# method to return data for product query requests
 def handle_query(product_name):
     with LOCK:
         
         if product_name in catalog:
-            #return catalog[product_name], 200
             product_info = catalog[product_name]
             response_data = {'name': product_name, 'price': product_info['price'], 'quantity': product_info['quantity']}
             return response_data, 200
         else:
             return None, 404
 
-# Function to handle buy requests
+# method to handle all buy requests and update catalog accordingly
 def handle_buy(order_data):
     global catalog
     product_name = order_data.get("name")
@@ -63,19 +63,19 @@ def handle_buy(order_data):
     with LOCK:
         if product_name in catalog and catalog[product_name]['quantity'] >= quantity:
             print("product is in stock, updating catalog")
-            catalog[product_name]['quantity'] -= quantity  # Deduct the purchased quantity from the catalog
-            # Update the quantity in the catalog CSV file
+            catalog[product_name]['quantity'] -= quantity  # Subtract the requested quantity from catalog
+            # Update catalog CSV file with new corresponding quantity
             with open(CATALOG_FILE, 'r') as file:
                 reader = csv.DictReader(file)
                 rows = list(reader)
 
-            # Find the row corresponding to the product name and update its quantity
+            # corresponding row to the product name is found and its quantity is updated
             for row in rows:
                 if row['name'] == product_name:
                     row['quantity'] = str(int(row['quantity']) - int(quantity))
                     break
 
-            # Write the modified rows back to the CSV file
+            # modified rows written back to the catalog disk csv file
             with open(CATALOG_FILE, 'w', newline='') as file:
                 writer = csv.DictWriter(file, fieldnames=['name', 'price', 'quantity'])
                 writer.writeheader()
@@ -87,36 +87,35 @@ def handle_buy(order_data):
 
 # Catalog Request Handler
 class CatalogRequestHandler(BaseHTTPRequestHandler):
+    #handle get requests by calling handle_query method, responses sent to frontend service
     def do_GET(self):
         parsed_path = urllib.parse.urlparse(self.path)
         product_name = parsed_path.path.split("/")[-1]
         product_info, response_code = handle_query(product_name)
         self.send_response(response_code)
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
         if product_info:
-            self.send_header('Content-Type', 'application/json')
-            self.end_headers()
-            product_response = json.dumps(product_info)      #json.dumps(response_data).encode('utf-8')
+            product_response = json.dumps(product_info)      
             self.wfile.write(product_response.encode('utf-8'))
-
+    #handle get requests by calling handle_buy method, responses sent to order service
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
-        post_data = json.loads(self.rfile.read(content_length))#.decode('utf')
-        #print(f"Raw response for buy query: {post_data.text}")
+        post_data = json.loads(self.rfile.read(content_length))
         response_code = handle_buy(post_data)
         self.send_response(response_code)
 
         if response_code == 200:
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({"message": "Order processed successfully"}).encode('utf-8'))
         else:
             self.send_header('Content-Type', 'text/plain')
             self.end_headers()
             self.wfile.write(f"Order failed: {response_code}".encode('utf-8'))
 
-# Start the catalog service
+# Start the catalog_service
 def start_catalog_service():
-    load_catalog()  # Load the catalog data
+    load_catalog()  # Loading the catalog data each time service is restarted
     catalog_server = ThreadingHTTPServer((host,CATALOG_PORT), CatalogRequestHandler)
     print(f'Starting catalog service on port {CATALOG_PORT}...')
     catalog_server.serve_forever()

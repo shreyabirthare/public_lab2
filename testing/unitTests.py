@@ -1,6 +1,7 @@
 import requests
 import unittest
 
+#testing frontend microservice with various scenarios
 class FrontEndServiceTest(unittest.TestCase):
     FRONT_END_URL = 'http://localhost:12503'
 
@@ -11,10 +12,11 @@ class FrontEndServiceTest(unittest.TestCase):
         self.assertIn('name', data['data'])
         self.assertEqual(data['data']['name'], 'Tux')
 
-    # def test_query_non_existing_product(self):
-    #     response = requests.get(f'{self.FRONT_END_URL}/products/Crocodile')
-    #     self.assertEqual(response.status_code, 404)
+    def test_query_non_existing_product(self):
+        response = requests.get(f'{self.FRONT_END_URL}/products/Crocodile')
+        self.assertEqual(response.status_code, 404)
 
+#testing catalog microservice with various scenarios
 class CatalogServiceTest(unittest.TestCase):
     CATALOG_URL = 'http://localhost:12501'
 
@@ -30,14 +32,14 @@ class CatalogServiceTest(unittest.TestCase):
         buy_product_data = {'name': 'Fox', 'quantity': 1}
         response = requests.post(f'{self.CATALOG_URL}/buy', json=buy_product_data)
         self.assertEqual(response.status_code, 200)
-        response_data = response.json()
-        self.assertEqual(response_data.get("message"), "Order processed successfully")
+
 
     def test_buy_non_existent_product(self):
         buy_product_data = {'name': 'Caterpillar', 'quantity': 1}
         response = requests.post(f'{self.CATALOG_URL}/buy', json=buy_product_data)
         self.assertNotEqual(response.status_code, 200)
 
+#testing order microservice with various scenarios
 class OrderServiceTest(unittest.TestCase):
     ORDER_URL = 'http://localhost:12502'
     CATALOG_URL = 'http://localhost:12501'

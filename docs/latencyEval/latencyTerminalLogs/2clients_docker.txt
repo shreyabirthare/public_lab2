@@ -1,0 +1,187 @@
+shreya@DESKTOP-4P0P6TP:/mnt/c/Users/HP/Desktop/ms/677/lab2/spring24-lab2-spring24-lab2-shreya-simran/src$ FRONTEND_HOST=128.119.243.164 sh -c 'python3 client.py & python3 client.py'
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 282}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 4}}
+placing order for Python , 5
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 282}}
+placing order for Tux , 13
+Order result for Python: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 269}}
+placing order for Tux , 45
+Order result for Tux: {'data': {'order_number': 1122}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 40
+Order result for Tux: {'data': {'order_number': 1123}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 224}}
+placing order for Tux , 23
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Order result for Tux: {'data': {'order_number': 1124}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 201}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 4}}
+placing order for Python , 44
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 201}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 36
+Order result for Python: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 46
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 50
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 27
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 201}}
+placing order for Tux , 39
+Order result for Tux: {'data': {'order_number': 1125}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 162}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 4}}
+placing order for Python , 33
+Order result for Python: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 36
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 45
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 42
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 18
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 162}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 162}}
+placing order for Tux , 8
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 4}}
+placing order for Python , 4
+Order result for Tux: {'data': {'order_number': 1126}}
+Order result for Python: {'data': {'order_number': 1127}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 42
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 154}}
+placing order for Tux , 29
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Order result for Tux: {'data': {'order_number': 1128}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 28
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 125}}
+placing order for Tux , 40
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Order result for Tux: {'data': {'order_number': 1129}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 50
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 85}}
+placing order for Tux , 1
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 22
+Order result for Tux: {'data': {'order_number': 1130}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 12
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 84}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 26
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 84}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 33
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 84}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 84}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+placing order for Tux , 50
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Order result for Tux: {'data': {'order_number': 1131}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 34}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 34}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 6
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 40
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 48
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 36
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 18
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 22
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 34}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 34}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 45
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 34}}
+placing order for Tux , 12
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Order result for Tux: {'data': {'order_number': 1132}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+placing order for Fox , 48
+Order result for Fox: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 1}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 22}}
+placing order for Tux , 28
+Order result for Tux: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+***Response Time: 4.7255003452301025 seconds***
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 22}}
+placing order for Tux , 33
+Order result for Tux: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 0}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 22}}
+placing order for Tux , 8
+Order result for Tux: {'data': {'order_number': 1133}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 2}}
+placing order for Whale , 37
+Order result for Whale: {'error': {'code': 404, 'message': 'product not found or is out of stock'}}
+***Response Time: 5.520808696746826 seconds***

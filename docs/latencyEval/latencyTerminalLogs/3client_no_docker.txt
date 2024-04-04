@@ -1,0 +1,299 @@
+shreya@DESKTOP-4P0P6TP:/mnt/c/Users/HP/Desktop/ms/677/lab2/spring24-lab2-spring24-lab2-shreya-simran/src$ FRONTEND_HOST=128.119.243.177 sh -c 'python3 client.py & python3 client.py & python3 client.py'
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9657}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4412}}
+placing order for Tux , 23
+placing order for Whale , 9
+Order result for Whale: {'data': {'order_number': 72}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4403}}
+placing order for Whale , 43
+Order result for Tux: {'data': {'order_number': 73}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5698}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7375}}
+placing order for Python , 10
+Order result for Whale: {'data': {'order_number': 74}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7375}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Order result for Python: {'data': {'order_number': 75}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5698}}
+placing order for Fox , 14
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7365}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5698}}
+placing order for Fox , 33
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5684}}
+Order result for Fox: {'data': {'order_number': 76}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Order result for Fox: {'data': {'order_number': 77}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4360}}
+placing order for Whale , 15
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7365}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7365}}
+placing order for Python , 40
+placing order for Python , 42
+Order result for Whale: {'data': {'order_number': 78}}
+Order result for Python: {'data': {'order_number': 79}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7323}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4345}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4345}}
+Order result for Python: {'data': {'order_number': 80}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4345}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7283}}
+placing order for Python , 17
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7283}}
+placing order for Python , 35
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7283}}
+Order result for Python: {'data': {'order_number': 81}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4345}}
+Order result for Python: {'data': {'order_number': 82}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7231}}
+placing order for Python , 3
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4345}}
+placing order for Whale , 20
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7231}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Order result for Python: {'data': {'order_number': 83}}
+Order result for Whale: {'data': {'order_number': 84}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7228}}
+placing order for Python , 27
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7228}}
+placing order for Python , 31
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+Order result for Python: {'data': {'order_number': 85}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+Order result for Python: {'data': {'order_number': 86}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7170}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7170}}
+placing order for Python , 4
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+Order result for Python: {'data': {'order_number': 87}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9634}}
+placing order for Tux , 24
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7166}}
+placing order for Python , 10
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7166}}
+Order result for Tux: {'data': {'order_number': 88}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+Order result for Python: {'data': {'order_number': 89}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9610}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5651}}
+placing order for Fox , 21
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9610}}
+placing order for Tux , 7
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+Order result for Fox: {'data': {'order_number': 90}}
+Order result for Tux: {'data': {'order_number': 91}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9603}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4325}}
+placing order for Whale , 7
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9603}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9603}}
+Order result for Whale: {'data': {'order_number': 92}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5630}}
+placing order for Fox , 7
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9603}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4318}}
+Order result for Fox: {'data': {'order_number': 93}}
+placing order for Whale , 19
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+Order result for Whale: {'data': {'order_number': 94}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4299}}
+placing order for Whale , 7
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7156}}
+placing order for Python , 25
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4299}}
+Order result for Whale: {'data': {'order_number': 95}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9603}}
+placing order for Tux , 6
+Order result for Python: {'data': {'order_number': 96}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4292}}
+placing order for Whale , 2
+Order result for Tux: {'data': {'order_number': 97}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4292}}
+Order result for Whale: {'data': {'order_number': 98}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5623}}
+placing order for Fox , 1
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5623}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4290}}
+placing order for Whale , 22
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4290}}
+placing order for Whale , 36
+Order result for Whale: {'data': {'order_number': 99}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5623}}
+placing order for Fox , 32
+Order result for Whale: {'data': {'order_number': 100}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5623}}
+Order result for Fox: {'data': {'order_number': 101}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5591}}
+placing order for Fox , 7
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9597}}
+placing order for Tux , 43
+Order result for Fox: {'data': {'order_number': 102}}
+Order result for Tux: {'data': {'order_number': 103}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9554}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7131}}
+placing order for Python , 45
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7131}}
+Order result for Python: {'data': {'order_number': 104}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4232}}
+placing order for Whale , 30
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7086}}
+Order result for Whale: {'data': {'order_number': 105}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9554}}
+placing order for Tux , 18
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4202}}
+Order result for Tux: {'data': {'order_number': 106}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7086}}
+placing order for Python , 47
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4202}}
+placing order for Whale , 5
+Order result for Python: {'data': {'order_number': 107}}
+Order result for Whale: {'data': {'order_number': 108}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4197}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5584}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9536}}
+placing order for Tux , 3
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4197}}
+placing order for Whale , 8
+Order result for Tux: {'data': {'order_number': 109}}
+Order result for Whale: {'data': {'order_number': 110}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9533}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4189}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9533}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4189}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9533}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5584}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9533}}
+placing order for Tux , 27
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5584}}
+placing order for Fox , 35
+Order result for Tux: {'data': {'order_number': 111}}
+Order result for Fox: {'data': {'order_number': 112}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4189}}
+placing order for Whale , 48
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5549}}
+Order result for Whale: {'data': {'order_number': 113}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4141}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4141}}
+placing order for Whale , 15
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5549}}
+placing order for Fox , 46
+Order result for Whale: {'data': {'order_number': 114}}
+Order result for Fox: {'data': {'order_number': 115}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7039}}
+placing order for Python , 27
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5503}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4126}}
+Order result for Python: {'data': {'order_number': 116}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9506}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5503}}
+placing order for Fox , 26
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 7012}}
+placing order for Python , 46
+Order result for Fox: {'data': {'order_number': 117}}
+Order result for Python: {'data': {'order_number': 118}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6966}}
+placing order for Python , 20
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9506}}
+Order result for Python: {'data': {'order_number': 119}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6946}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5477}}
+placing order for Fox , 15
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6946}}
+placing order for Python , 17
+Order result for Fox: {'data': {'order_number': 120}}
+Order result for Python: {'data': {'order_number': 121}}
+***Response Time: 1.6024115085601807 seconds***
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6929}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9506}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4126}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9506}}
+placing order for Tux , 40
+Order result for Tux: {'data': {'order_number': 122}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6929}}
+placing order for Python , 7
+Order result for Python: {'data': {'order_number': 123}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4126}}
+placing order for Whale , 20
+Order result for Whale: {'data': {'order_number': 124}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6922}}
+placing order for Python , 23
+Order result for Python: {'data': {'order_number': 125}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6899}}
+placing order for Python , 24
+Order result for Python: {'data': {'order_number': 126}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4106}}
+placing order for Whale , 49
+Order result for Whale: {'data': {'order_number': 127}}
+***Response Time: 1.8900153636932373 seconds***
+Order result for Fox: {'data': {'order_number': 128}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4057}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9466}}
+placing order for Tux , 7
+Order result for Tux: {'data': {'order_number': 129}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6875}}
+placing order for Python , 24
+Order result for Python: {'data': {'order_number': 130}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9459}}
+placing order for Tux , 7
+Order result for Tux: {'data': {'order_number': 131}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4057}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9452}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9452}}
+placing order for Tux , 31
+Order result for Tux: {'data': {'order_number': 132}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5461}}
+placing order for Fox , 50
+Order result for Fox: {'data': {'order_number': 133}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6851}}
+placing order for Python , 28
+Order result for Python: {'data': {'order_number': 134}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6823}}
+placing order for Python , 33
+Order result for Python: {'data': {'order_number': 135}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5411}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6790}}
+placing order for Python , 36
+Order result for Python: {'data': {'order_number': 136}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4057}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5411}}
+placing order for Fox , 30
+Order result for Fox: {'data': {'order_number': 137}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9421}}
+placing order for Tux , 36
+Order result for Tux: {'data': {'order_number': 138}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9385}}
+placing order for Tux , 33
+Order result for Tux: {'data': {'order_number': 139}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4057}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9352}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9352}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9352}}
+placing order for Tux , 45
+Order result for Tux: {'data': {'order_number': 140}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9307}}
+placing order for Tux , 9
+Order result for Tux: {'data': {'order_number': 141}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5381}}
+placing order for Fox , 34
+Order result for Fox: {'data': {'order_number': 142}}
+Query result for Tux: {'data': {'name': 'Tux', 'price': 15.99, 'quantity': 9298}}
+Query result for Fox: {'data': {'name': 'Fox', 'price': 12.99, 'quantity': 5347}}
+Query result for Python: {'data': {'name': 'Python', 'price': 20.99, 'quantity': 6754}}
+Query result for Whale: {'data': {'name': 'Whale', 'price': 25.99, 'quantity': 4057}}
+placing order for Whale , 2
+Order result for Whale: {'data': {'order_number': 143}}
+***Response Time: 3.834850549697876 seconds***
+shreya@DESKTOP-4P0P6TP:/mnt/c/Users/HP/Desktop/ms/677/lab2/spring24-lab2-spring24-lab2-shreya-simran/src$

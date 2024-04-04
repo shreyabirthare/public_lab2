@@ -3,6 +3,15 @@ Compsci 677: Distributed and Operating Systems
 
 Spring 2024
 
+Team members:
+Simran Malik (simranmalik@umass.edu)
+Shreya Birthare (sbirthare@umass.edu)
+
+Work Division:
+part1 - Simran Malik
+part2 and part3- Shreya Birthare
+
+Reason for late submission( extension used for 2 days): medical exception
 
 # Lab 2: Asterix and Tiered Microservices-Based Toy Store
 

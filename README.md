@@ -13,6 +13,65 @@ part2 and part3- Shreya Birthare
 
 Reason for late submission( extension used for 2 days): medical exception
 
+
+README:
+
+1. Download the latest version of python from: https://www.python.org/downloads/
+2. Download the latest version of Docker from: https://docs.docker.com/get-docker/
+3. Clone the repo: git clone https://github.com/umass-cs677-current/spring24-lab2-spring24-lab2-shreya-simran.git
+4. Go inside the clone repo: cd cloned-repo-path
+5. Install requirements.txt: pip install -r requirements.txt
+
+RUNNING PART 1:
+
+1. In src/catalog/catalog.py, src/order/order.py, src/front_end_service/front_end_service.py update the IP addresses based on where you plan to run the three microservices. By default it runs on local host.
+You can modify the code to give the IP addresses of the servers or pass the environment variable to configure port and host IPs:
+FRONT_END_PORT = int(os.getenv('FRONTEND_LISTENING_PORT',12503))
+CATALOG_PORT = int(os.getenv('CATALOG_PORT',12501))
+ORDER_PORT = int(os.getenv('ORDER_PORT',12502))
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost')
+CATALOG_HOST = os.getenv('CATALOG_HOST', 'localhost')
+ORDER_HOST = os.getenv('ORDER_HOST', 'localhost')
+
+2. Delete order_log.csv if it exists already: rm ../src/order/order_data/order_log.csv
+
+3. Once the values are updated. Start the 3 microservices:
+python3 ../src/catalog/catalog.py
+python3 ../src/order/order.py
+python3 ../src/front_end_service/front_end_service.py
+
+4. Start the client. You can configure the FRONTEND_HOST env variable if required:
+FRONTEND_HOST=<<frontend_service_ip>> sh -c 'python3 client.py'
+
+5. If you want to run multiple clients then use the following command:
+FRONTEND_HOST=<<frontend_service_ip>> sh -c 'python3 client.py & python3 client.py'
+This will run 2 concurrent client instances. Similarly you can run 'n' number of instances.
+
+RUNNING PART 2:
+
+1. Install docker and switch to root user and navigate to the cloned repo path: sudo su; cd ../<<path_to_repo>>
+2. There are two ways to run the script: (a) Using build.sh or (b) Using docker-compose.yml
+3. If you decide to run using build.sh:
+    1. Make sure ./build.sh has executable permision: chomod +x build.sh
+    2. Update ../src/frontend.Dockerfile, ../src/order.Dockerfile, ../src/catalog.Dockerfile to configure setup's ports and paths if required. Update ../src/build.sh to use setup's IP address and port based on where which microservice is running if required.
+    3. Once the network and ports are configured run the script: ./build.sh
+    4. Verify that images and containers are up and running: docker images, docker ps
+    5. Run the client code locally: FRONTEND_HOST=<<frontend_service_ip>> sh -c 'python3 client.py' Configure other environment variables if required.
+    6. To stop and remove the containers: ./build.sh delete
+4. If you decide to run using docker-compose.yml:
+    1. Update .env file to update the environment variables based on where the microservices are running.
+    2. Run docker-compose up / docker compose up to build the images are start the container
+    3. Run the client code locally: FRONTEND_HOST=<<frontend_service_ip>> sh -c 'python3 client.py' Configure other environment variables if required.
+    4. To stop and remove the containers: docker-compose down / docker compose down
+
+RUNNING PART 3:
+
+1. See the ../docs/ directory to see all the documents and the relevant outputs and logs
+2. To run the script to plot the latency graph: python3 ../src/plotLatencyGraph.py
+3. To run the unit tests: cd ../testing; python3 -m unittest unitTests
+
+***
+
 # Lab 2: Asterix and Tiered Microservices-Based Toy Store
 
  
